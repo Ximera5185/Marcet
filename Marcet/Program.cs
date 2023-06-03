@@ -10,8 +10,7 @@ namespace Marcet
     {
         static void Main(string [] args)
         {
-            Console.WriteLine("juj");
-            Console.WriteLine();
+         
         }
 
         class Seller 
