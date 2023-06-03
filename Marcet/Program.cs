@@ -30,7 +30,23 @@ namespace Marcet
 
         class Product 
         {
-            private void CreateGoods() { }
+            public string Name { get; private set; }
+            public string Manufacturer { get; private set; }
+            public int Price { get; private set; }
+
+            public Product(string name, string manufacturer, int price) 
+            {
+                Name = name;
+                Manufacturer = manufacturer;
+                Price = price;
+            }
+
+            private void CreateGoods() 
+            {
+                Product product1 = new Product("Phone","Samsung",20);
+                Product product2 = new Product("television","LG",50);
+                Product product3 = new Product("refrigerator","Dexp",200);
+            }
 
             private void ShowTheGoods() { }
 
