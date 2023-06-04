@@ -10,49 +10,101 @@ namespace Marcet
     {
         static void Main(string [] args)
         {
-         
+
         }
 
-        class Seller 
+        class Seller
         {
-           private List<string> _goods = new List<string>();
+            public List<Product> goods = new List<Product>();
 
-            private void SellProduct() 
-            {
-            
-            }
         }
 
-        class Player 
+        class Player
         {
-            private List<string> _bag = new List<string>();
+            public List<Product> _bag = new List<Product>();
+
+            public void PurchaseOfGoods() { }
         }
 
-        class Product 
+        class Product
         {
             public string Name { get; private set; }
             public string Manufacturer { get; private set; }
             public int Price { get; private set; }
 
-            public Product(string name, string manufacturer, int price) 
+            public Product(string name, string manufacturer, int price)
             {
                 Name = name;
                 Manufacturer = manufacturer;
                 Price = price;
             }
+        }
 
-            private void CreateGoods() 
+        class Shop
+        {
+            private void WorkProgram()
             {
-                Product product1 = new Product("Phone","Samsung",20);
-                Product product2 = new Product("television","LG",50);
-                Product product3 = new Product("refrigerator","Dexp",200);
+                Seller seller = new Seller();
+
+                Player player = new Player();
+
+                Product product1 = new Product("Phone", "Samsung", 20);
+                Product product2 = new Product("television", "LG", 50);
+                Product product3 = new Product("refrigerator", "Dexp", 200);
+
+                const string CaseShowSellerGoodsCommand = "1";
+                const string CasePurchaseOfGoodsCommand = "2";
+                const string CaseShowBagOfPlayerCommand = "3";
+                const string CaseWorkProgrammCommand = "4";
+
+                bool isWorkProgram = true;
+
+                string inputUserCommand = "";
+
+                AddGoodsListSeller(seller.goods,product1);
+                AddGoodsListSeller(seller.goods,product2);  
+                AddGoodsListSeller(seller.goods,product3);
+
+                while (isWorkProgram)
+                {
+                    Console.WriteLine($"Для просмотра списка товаров продовца введие {CaseShowSellerGoodsCommand}\n" +
+                    $"Для покупки товара у продавца введите {CasePurchaseOfGoodsCommand}\n" +
+                    $"Для просмотра своей сумки с товарами введите {CaseShowBagOfPlayerCommand}\n" +
+                    $"Для выхода из программы ввежите {CaseWorkProgrammCommand}");
+
+                    switch (inputUserCommand)
+                    {
+                        case CaseShowSellerGoodsCommand:
+                            ShowTheGoods(seller.goods);
+                            break;
+                        case CasePurchaseOfGoodsCommand:
+                            break;
+                        case CaseShowBagOfPlayerCommand:
+                            break;
+                        case CaseWorkProgrammCommand:
+                            break;
+                    }
+                }
             }
 
-            private void ShowTheGoods() { }
-
-            private void AddGoodsList() { }
+            private void AddGoodsListSeller(List<Product> goods,Product product)
+            {
+                goods.Add(product);
+            }
 
             private void RemoveGoodsList() { }
+
+            private void ShowTheGoods(List<Product> goods)
+            {
+                Console.Clear();
+
+                foreach (Product good in goods)
+                {
+                    Console.WriteLine($"Название товара - {good.Name} Производитель товара - {good.Manufacturer} Цена товара - {good.Price}");
+                }
+
+                Console.ReadKey();
+            }
         }
     }
 }
