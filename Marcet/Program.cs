@@ -10,30 +10,44 @@ namespace Marcet
     {
         static void Main(string [] args)
         {
+            Shop shop = new Shop();
 
+            shop.WorkProgram();
         }
 
         class Seller
         {
             public List<Product> goods = new List<Product>();
 
+            public void ShowTheGoods() 
+            {
+                Console.Clear();
+                Console.WriteLine("Показ товаров продовца : ");
+
+                foreach (Product good in goods)
+                {
+                    Console.WriteLine($"Номер товара - {good.Number} Название товара - {good.Name} Производитель товара - {good.Manufacturer} Цена товара - {good.Price}");
+                }
+
+                Console.ReadKey();
+            }
         }
 
         class Player
         {
             public List<Product> _bag = new List<Product>();
-
-            public void PurchaseOfGoods() { }
         }
 
         class Product
         {
+            public int Number { get; private set; }
             public string Name { get; private set; }
             public string Manufacturer { get; private set; }
             public int Price { get; private set; }
 
-            public Product(string name, string manufacturer, int price)
+            public Product(int number,string name, string manufacturer, int price)
             {
+                Number = number;
                 Name = name;
                 Manufacturer = manufacturer;
                 Price = price;
@@ -42,15 +56,15 @@ namespace Marcet
 
         class Shop
         {
-            private void WorkProgram()
+            public void WorkProgram()
             {
                 Seller seller = new Seller();
 
                 Player player = new Player();
 
-                Product product1 = new Product("Phone", "Samsung", 20);
-                Product product2 = new Product("television", "LG", 50);
-                Product product3 = new Product("refrigerator", "Dexp", 200);
+                Product product1 = new Product(1,"Phone", "Samsung", 20);
+                Product product2 = new Product(2,"television", "LG", 50);
+                Product product3 = new Product(3,"refrigerator", "Dexp", 200);
 
                 const string CaseShowSellerGoodsCommand = "1";
                 const string CasePurchaseOfGoodsCommand = "2";
@@ -67,17 +81,21 @@ namespace Marcet
 
                 while (isWorkProgram)
                 {
+                    Console.Clear();
                     Console.WriteLine($"Для просмотра списка товаров продовца введие {CaseShowSellerGoodsCommand}\n" +
                     $"Для покупки товара у продавца введите {CasePurchaseOfGoodsCommand}\n" +
                     $"Для просмотра своей сумки с товарами введите {CaseShowBagOfPlayerCommand}\n" +
                     $"Для выхода из программы ввежите {CaseWorkProgrammCommand}");
 
+                    inputUserCommand = Console.ReadLine();
+                    
                     switch (inputUserCommand)
                     {
                         case CaseShowSellerGoodsCommand:
-                            ShowTheGoods(seller.goods);
+                            seller.ShowTheGoods();
                             break;
                         case CasePurchaseOfGoodsCommand:
+                            
                             break;
                         case CaseShowBagOfPlayerCommand:
                             break;
@@ -86,24 +104,17 @@ namespace Marcet
                     }
                 }
             }
-
+            
             private void AddGoodsListSeller(List<Product> goods,Product product)
             {
                 goods.Add(product);
             }
 
             private void RemoveGoodsList() { }
-
-            private void ShowTheGoods(List<Product> goods)
+            s
+            private void  SaleOfGoods()
             {
-                Console.Clear();
-
-                foreach (Product good in goods)
-                {
-                    Console.WriteLine($"Название товара - {good.Name} Производитель товара - {good.Manufacturer} Цена товара - {good.Price}");
-                }
-
-                Console.ReadKey();
+                
             }
         }
     }
