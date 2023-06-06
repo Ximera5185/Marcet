@@ -29,5 +29,10 @@ namespace Marcet
 
             Console.ReadKey();
         }
+
+        public void AddGood(Product product) 
+        {
+            goods.Add( product );
+        }
     }
 }

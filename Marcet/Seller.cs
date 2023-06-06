@@ -29,5 +29,10 @@ namespace Marcet
 
             Console.ReadKey();
         }
+
+        public void Remove(Product product) 
+        {
+            goods.Remove( product );
+        }
     }
 }
