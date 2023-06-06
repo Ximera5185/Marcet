@@ -12,29 +12,22 @@ namespace Marcet
 
         public void ShowGoods() 
         {
-            foreach (Product good in goods)
-            {
-                Console.WriteLine($"Список товаров продовца : ");
-                Console.WriteLine($"Порядковый номер товара - {good.SerialNumber} Название товара - {good.Name} Производитель товара - {good.Manufacturer} Цена товара - {good.Price}");
-            }
-        }
+            Console.Clear();
 
-        public void RemoveGood(int number) 
-        {
-            foreach (Product good in goods)
+            if (goods.Count == 0)
             {
-                if (number == good.SerialNumber)
+                Console.WriteLine("Список товаров у прадовца пуст");
+            }
+            else
+            {
+                foreach (Product good in goods)
                 {
-                    goods.Remove(good);
-                    Console.WriteLine("Товар удален");
-                    Console.ReadLine();
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Товар с указанным серийным номером не найден.");
+                    Console.WriteLine($"Список товаров продовца : ");
+                    Console.WriteLine($"Порядковый номер товара - {good.SerialNumber} Название товара - {good.Name} Производитель товара - {good.Manufacturer} Цена товара - {good.Price}");
                 }
             }
+
+            Console.ReadKey();
         }
     }
 }

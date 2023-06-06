@@ -11,7 +11,7 @@ namespace Marcet
         static void Main(string [] args)
         {
             WorkProgram workProgram = new WorkProgram();
-            
+            workProgram.Run();
         }
     }
 }
