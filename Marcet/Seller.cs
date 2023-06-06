@@ -18,5 +18,23 @@ namespace Marcet
                 Console.WriteLine($"Порядковый номер товара - {good.SerialNumber} Название товара - {good.Name} Производитель товара - {good.Manufacturer} Цена товара - {good.Price}");
             }
         }
+
+        public void RemoveGood(int number) 
+        {
+            foreach (Product good in goods)
+            {
+                if (number == good.SerialNumber)
+                {
+                    goods.Remove(good);
+                    Console.WriteLine("Товар удален");
+                    Console.ReadLine();
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Товар с указанным серийным номером не найден.");
+                }
+            }
+        }
     }
 }
