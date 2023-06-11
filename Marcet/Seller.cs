@@ -8,31 +8,45 @@ namespace Marcet
 {
     internal class Seller
     {
-       public List<Product> goods = new List<Product>();
-
-        public void ShowGoods() 
+        public Seller() 
         {
-            Console.Clear();
-
-            if (goods.Count == 0)
-            {
-                Console.WriteLine("Список товаров у прадовца пуст");
-            }
-            else
-            {
-                foreach (Product good in goods)
-                {
-                    Console.WriteLine($"Список товаров продовца : ");
-                    Console.WriteLine($"Порядковый номер товара - {good.SerialNumber} Название товара - {good.Name} Производитель товара - {good.Manufacturer} Цена товара - {good.Price}");
-                }
-            }
-
-            Console.ReadKey();
+            Goods = _goods;
         }
 
-        public void Remove(Product product) 
+        private List<Product> _goods = new List<Product>();
+
+        public List<Product> Goods { get; private set; }
+
+        Product product1 = new Product(1, "Теливизор", "Samsung", 150);
+        Product product2 = new Product(2, "Машина", "Samsung", 150);
+        Product product3 = new Product(3, "Клавиатура", "Samsung", 150);
+        Product product4 = new Product(4, "Мышка", "Samsung", 150);
+
+        public void AddGoodListSeller() 
         {
-            goods.Remove( product );
+            _goods.Add(product1);
+            _goods.Add(product2);
+            _goods.Add(product3);
+            _goods.Add(product4);
+        }
+
+        public Product SearchGood(int inputNumber, List<Product> goods)
+        {
+            foreach (Product good in goods)
+            {
+                if (good.SerialNumber == inputNumber)
+                {
+                    return good;
+                }
+
+            }
+
+            return null;
+        }
+
+        public void Remove(Product product)
+        {
+            _goods.Remove(product);
         }
     }
 }

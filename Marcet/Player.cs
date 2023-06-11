@@ -8,31 +8,23 @@ namespace Marcet
 {
     internal class Player
     {
-        public List<Product> goods = new List<Product>();
-
-        public void ShowGoods() 
+        public Player()
         {
-            Console.Clear();
-
-            if (goods.Count == 0)
-            {
-                Console.WriteLine("Список товаров у игрока пуст");
-            }
-            else 
-            {
-                foreach (Product good in goods)
-                {
-                    Console.WriteLine($"Список товаров игрока:");
-                    Console.WriteLine($"Порядковый номер товара - {good.SerialNumber} Название товара - {good.Name} Производитель товара - {good.Manufacturer} Цена товара - {good.Price}");
-                }
-            }
-
-            Console.ReadKey();
+            Goods = _goods;
+            Maney = _maney;
         }
 
-        public void AddGood(Product product) 
+        private int _maney = 500;
+
+        private List<Product> _goods = new List<Product>();
+
+        public List<Product> Goods { get; private set; }
+
+        public int Maney {get; set;}
+
+        public void AddGood(Product product)
         {
-            goods.Add( product );
+            _goods.Add(product);
         }
     }
 }

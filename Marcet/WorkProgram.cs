@@ -8,47 +8,42 @@ namespace Marcet
 {
     internal class WorkProgram
     {
-        const string CaseShowSellerGoodsCommand = "1";
-        const string CaseShowPlayerGoodsCommand = "2";
-        const string CaseSellGoodsCommand = "3";
-        const string CaseExitProgram = "6";
-
         Seller seller = new Seller();
         Player player = new Player();
 
         public void Run()
         {
-            Product product1 = new Product(1, "Теливизор", "Samsung", 150);
-            Product product2 = new Product(2, "Машина", "Samsung", 150);
-            Product product3 = new Product(3, "Клавиатура", "Samsung", 150);
-            Product product4 = new Product(4, "Мышка", "Samsung", 150);
+            const string CaseShowSellerGoodsCommand = "1";
+            const string CaseShowPlayerGoodsCommand = "2";
+            const string CaseSellGoodsCommand = "3";
+            const string CaseExitProgram = "6";
 
             bool isProgramWork = true;
 
-            seller.goods.Add(product1);
-            seller.goods.Add(product2);
-            seller.goods.Add(product3);
-            seller.goods.Add(product4);
+            seller.AddGoodListSeller();
 
             while (isProgramWork)
             {
                 Console.Clear();
                 Console.WriteLine($"Для показа списка товаров продовца {CaseShowSellerGoodsCommand}\n" +
-                $"Для показа списка товаров продовца {CaseShowPlayerGoodsCommand}\n" +
-                $"Для покупки товара у продовсы {CaseSellGoodsCommand}\n" +
+                $"Для показа списка товаров покупателя {CaseShowPlayerGoodsCommand}\n" +
+                $"Для покупки товара у продовца {CaseSellGoodsCommand}\n" +
                 $"Для выхода из программы введите {CaseExitProgram}");
 
                 switch (Console.ReadLine())
                 {
                     case CaseShowSellerGoodsCommand:
-                        seller.ShowGoods();
+                        ShowGoods(seller.Goods);
                         break;
+
                     case CaseShowPlayerGoodsCommand:
-                        player.ShowGoods();
+                        ShowGoods(player.Goods);
                         break;
+
                     case CaseSellGoodsCommand:
                         SellGood();
                         break;
+
                     case CaseExitProgram:
                         isProgramWork = false;
                         break;
@@ -57,36 +52,75 @@ namespace Marcet
            
         }
 
+        private int GetNumber()
+        {
+            int inputNumber;
+
+            Console.WriteLine("Введите число");
+
+            while (int.TryParse(Console.ReadLine(), out inputNumber) == false)
+            {
+                Console.WriteLine("Ошибка ввода ! Введите целочисленное значение");
+            }
+
+            return inputNumber;
+        }
+
         private void SellGood() 
         {
             Product product;
+
             int inputNumber;
 
-            seller.ShowGoods();
+            ShowGoods(seller.Goods);
 
             Console.WriteLine("Для покупки товара у продовца введите серийный номер товара");
 
-            inputNumber = Convert.ToInt32(Console.ReadLine());
+            inputNumber = GetNumber();
 
-            product = SearchGood(inputNumber,seller.goods);
+            product = seller.SearchGood(inputNumber,seller.Goods);
 
-            seller.Remove(product);
+            if (product != null)
+            {
+                if (player.Maney >= product.Price)
+                {
+                    seller.Remove(product);
 
-            player.AddGood(product);
+                    player.AddGood(product);
+
+                    player.Maney -= product.Price;
+                }
+                else 
+                {
+                    Console.WriteLine("У покупателя не достаточно средств");
+                    Console.ReadKey();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Товара с таким номером нет");
+                Console.ReadKey();
+            }
         }
 
-        private Product SearchGood(int inputNumber,List<Product>goods) 
+        public void ShowGoods(List<Product>goods)
         {
-            foreach (Product good in goods)
+            Console.Clear();
+
+            if (goods.Count == 0)
             {
-                if (good.SerialNumber == inputNumber)
+                Console.WriteLine("Список товаров пуст");
+            }
+            else
+            {
+                foreach (Product good in goods)
                 {
-                    return good;
+                    Console.WriteLine($"Список товаров :");
+                    Console.WriteLine($"Порядковый номер товара - {good.SerialNumber} Название товара - {good.Name} Производитель товара - {good.Manufacturer} Цена товара - {good.Price}");
                 }
-                
             }
 
-            return null;
+            Console.ReadKey();
         }
     }
 }
