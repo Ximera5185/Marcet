@@ -10,14 +10,9 @@ namespace Marcet
     {
         static void Main(string [] args)
         {
-            WorkProgram workProgram = new WorkProgram();
-            workProgram.Run();
+            TradeHandler tradeHandler = new TradeHandler();
+
+            tradeHandler.Run();
         }
     }
 }
-
-/*Существует продавец, он имеет у себя список товаров, и при нужде, может вам его показать, также продавец может продать вам товар. После продажи товар переходит к вам, и вы можете также посмотреть свои вещи.
-
-Возможные классы – игрок, продавец, товар.
-
-Вы можете сделать так, как вы видите это.*/

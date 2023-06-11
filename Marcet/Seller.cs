@@ -6,35 +6,20 @@ using System.Threading.Tasks;
 
 namespace Marcet
 {
-    internal class Seller
+    internal class Seller : Human
     {
-        public Seller() 
+        public Seller(int money = 0)
         {
-            Goods = _goods;
+            Money = money;
+
+            CreateGoods();
         }
 
-        private List<Product> _goods = new List<Product>();
-
-        public List<Product> Goods { get; private set; }
-
-        Product product1 = new Product(1, "Теливизор", "Samsung", 150);
-        Product product2 = new Product(2, "Машина", "Samsung", 150);
-        Product product3 = new Product(3, "Клавиатура", "Samsung", 150);
-        Product product4 = new Product(4, "Мышка", "Samsung", 150);
-
-        public void AddGoodListSeller() 
+        public Product SearchGood(string name)
         {
-            _goods.Add(product1);
-            _goods.Add(product2);
-            _goods.Add(product3);
-            _goods.Add(product4);
-        }
-
-        public Product SearchGood(int inputNumber, List<Product> goods)
-        {
-            foreach (Product good in goods)
+            foreach (Product good in Goods)
             {
-                if (good.SerialNumber == inputNumber)
+                if (good.Name.ToLower() == name.ToLower())
                 {
                     return good;
                 }
@@ -46,7 +31,22 @@ namespace Marcet
 
         public void Remove(Product product)
         {
-            _goods.Remove(product);
+            Goods.Remove(product);
+
+            Money += product.Price;
+        }
+
+        private void CreateGoods()
+        {
+            Product product1 = new Product("Теливизор", "Samsung", 150);
+            Product product2 = new Product("Машина", "Samsung", 150);
+            Product product3 = new Product("Клавиатура", "Samsung", 150);
+            Product product4 = new Product("Мышка", "Samsung", 150);
+
+            Goods.Add(product1);
+            Goods.Add(product2);
+            Goods.Add(product3);
+            Goods.Add(product4);
         }
     }
 }

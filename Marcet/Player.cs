@@ -6,29 +6,18 @@ using System.Threading.Tasks;
 
 namespace Marcet
 {
-    internal class Player
+    internal class Player : Human
     {
-        public Player()
-        {
-            Goods = _goods;
-            Money = _money;
+        public Player(int money = 150)
+        {   
+            Money = money;
         }
-
-        private readonly int _money = 150 ;
-
-        private List<Product> _goods = new List<Product>();
-
-        public List<Product> Goods { get; private set; }
-
-        public int Money {get;private set;}
 
         public void AddGood(Product product)
         {
-            _goods.Add(product);
+            Goods.Add(product);
 
             Money -= product.Price;
         }
-     
-
     }
 }

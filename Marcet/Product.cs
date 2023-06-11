@@ -8,24 +8,15 @@ namespace Marcet
 {
     internal class Product
     {
-        public Product(int serialNumber,string name,string manufacrurer,int price) 
+        public Product(string name,string manufacrurer,int price) 
         {
             Name = name;
-
-            SerialNumber = serialNumber;
-
             Manufacturer = manufacrurer;
-
             Price = price;
         }
 
-        public int SerialNumber { get; private set;}
-
         public string Name { get; private set; }
-
         public string Manufacturer { get; private set; }
-
         public int Price { get; private set; }
-
     }
 }
