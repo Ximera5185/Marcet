@@ -11,20 +11,24 @@ namespace Marcet
         public Player()
         {
             Goods = _goods;
-            Maney = _maney;
+            Money = _money;
         }
 
-        private int _maney = 500;
+        private readonly int _money = 150 ;
 
         private List<Product> _goods = new List<Product>();
 
         public List<Product> Goods { get; private set; }
 
-        public int Maney {get; set;}
+        public int Money {get;private set;}
 
         public void AddGood(Product product)
         {
             _goods.Add(product);
+
+            Money -= product.Price;
         }
+     
+
     }
 }

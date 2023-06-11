@@ -28,7 +28,8 @@ namespace Marcet
                 Console.WriteLine($"Для показа списка товаров продовца {CaseShowSellerGoodsCommand}\n" +
                 $"Для показа списка товаров покупателя {CaseShowPlayerGoodsCommand}\n" +
                 $"Для покупки товара у продовца {CaseSellGoodsCommand}\n" +
-                $"Для выхода из программы введите {CaseExitProgram}");
+                $"Для выхода из программы введите {CaseExitProgram}\n" +
+                $"Баланс игрока {player.Money}");
 
                 switch (Console.ReadLine())
                 {
@@ -82,13 +83,12 @@ namespace Marcet
 
             if (product != null)
             {
-                if (player.Maney >= product.Price)
+                if (player.Money >= product.Price)
                 {
                     seller.Remove(product);
 
                     player.AddGood(product);
 
-                    player.Maney -= product.Price;
                 }
                 else 
                 {
