@@ -8,8 +8,8 @@ namespace Marcet
 {
     internal class TradeHandler
     {
-       private Seller _seller = new Seller();
-       private Player _player = new Player();
+        private Seller _seller = new Seller();
+        private Player _player = new Player();
 
         public void Run()
         {
@@ -50,7 +50,7 @@ namespace Marcet
             }
         }
 
-        private void SellGood() 
+        private void SellGood()
         {
             Product product;
             string name;
@@ -70,7 +70,7 @@ namespace Marcet
 
                     _player.AddGood(product);
                 }
-                else 
+                else
                 {
                     Console.WriteLine("У покупателя не достаточно средств");
                     Console.ReadKey();
