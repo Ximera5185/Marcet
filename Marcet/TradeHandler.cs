@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Marcet
 {
@@ -53,20 +49,22 @@ namespace Marcet
         private void SellGood()
         {
             Product product;
+
             string name;
 
             _seller.ShowGoods();
 
             Console.WriteLine("Для покупки товара у продовца введите название  товара");
+
             name = Console.ReadLine();
 
-            product = _seller.SearchGood(name);
+            product = _seller.TryGetProduct(name);
 
             if (product != null)
             {
                 if (_player.Money >= product.Price)
                 {
-                    _seller.Remove(product);
+                    _seller.Sell(product);
 
                     _player.AddGood(product);
                 }

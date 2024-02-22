@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Marcet
 {
     internal class Human
     {
-        protected List<Product> Goods = new List<Product>();
+        protected List<Product> _products = new List<Product>();
 
         public int Money{get; protected set;}
 
@@ -16,13 +13,13 @@ namespace Marcet
         {
             Console.Clear();
 
-            if (Goods.Count == 0)
+            if (_products.Count == 0)
             {
                 Console.WriteLine("Список товаров пуст");
             }
             else
             {
-                foreach (Product good in Goods)
+                foreach (Product good in _products)
                 {
                     Console.WriteLine($"Список товаров :");
                     Console.WriteLine($" Название товара - {good.Name} Производитель товара - {good.Manufacturer} Цена товара - {good.Price}");

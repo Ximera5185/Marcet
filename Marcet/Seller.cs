@@ -1,27 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Marcet
+﻿namespace Marcet
 {
     internal class Seller : Human
     {
+        private readonly int _priseProduct = 150;
+
         public Seller(int money = 0)
         {
             Money = money;
 
-            CreateGoods();
+            int priseProduct = _priseProduct;
+
+            CreateGoods(priseProduct);
         }
 
-        public Product SearchGood(string name)
+        public Product TryGetProduct(string name)
         {
-            foreach (Product good in Goods)
+            foreach (Product product in _products)
             {
-                if (good.Name.ToLower() == name.ToLower())
+                if (product.Name.ToLower() == name.ToLower())
                 {
-                    return good;
+                    return product;
                 }
 
             }
@@ -29,24 +27,19 @@ namespace Marcet
             return null;
         }
 
-        public void Remove(Product product)
+        public void Sell(Product product)
         {
-            Goods.Remove(product);
+            _products.Remove(product);
 
             Money += product.Price;
         }
 
-        private void CreateGoods()
+        private void CreateGoods(int priseProduct)
         {
-            Product product1 = new Product("Теливизор", "Samsung", 150);
-            Product product2 = new Product("Машина", "Samsung", 150);
-            Product product3 = new Product("Клавиатура", "Samsung", 150);
-            Product product4 = new Product("Мышка", "Samsung", 150);
-
-            Goods.Add(product1);
-            Goods.Add(product2);
-            Goods.Add(product3);
-            Goods.Add(product4);
+            _products.Add(new Product("Теливизор", "Samsung", priseProduct));
+            _products.Add(new Product("Машина", "Samsung", priseProduct));
+            _products.Add(new Product("Клавиатура", "Samsung", priseProduct));
+            _products.Add(new Product("Мышка", "Samsung", priseProduct));
         }
     }
 }

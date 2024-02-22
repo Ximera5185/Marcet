@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Marcet
+﻿namespace Marcet
 {
     internal class Player : Human
     {
@@ -15,7 +9,7 @@ namespace Marcet
 
         public void AddGood(Product product)
         {
-            Goods.Add(product);
+            _products.Add(product);
 
             Money -= product.Price;
         }
