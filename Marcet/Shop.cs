@@ -2,7 +2,7 @@
 
 namespace Marcet
 {
-    internal class TradeHandler
+    internal class Shop
     {
         private Seller _seller = new Seller();
         private Player _player = new Player();
@@ -35,7 +35,7 @@ namespace Marcet
                         break;
 
                     case SellGoodsCommand:
-                        GiveProduct();
+                        Trade();
                         break;
 
                     case ExitProgram:
@@ -45,7 +45,7 @@ namespace Marcet
             }
         }
 
-        private void GiveProduct()
+        private void Trade()
         {
             Product product;
 
@@ -59,9 +59,12 @@ namespace Marcet
 
             if (_seller.TryGetProduct(name, out product))
             {
+                if (_player.CanBuy(product.Price))
+                {
                     _seller.SellProduct(product);
 
-                    _player.AddAndBuyGood(product);   
+                    _player.Buy(product);   
+                }
             }
             else
             {

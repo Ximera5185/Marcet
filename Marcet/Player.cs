@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Marcet
+﻿namespace Marcet
 {
     internal class Player : Human
     {
@@ -9,20 +7,16 @@ namespace Marcet
             Money = money;
         }
 
-        public void AddAndBuyGood(Product product)
+        public void Buy(Product product)
         {
-            if (Money >= product.Price)
-            {
-                Products.Add(product);
+            Products.Add(product);
 
-                Money -= product.Price;
-            }
-            else
-            {
-                Console.WriteLine("У покупателя не достаточно средств");
-                Console.ReadKey();
-            }
+            Money -= product.Price;
+        }
 
+        public bool CanBuy(int price)
+        {
+            return Money >= price;
         }
     }
 }

@@ -4,7 +4,7 @@
     {
         static void Main(string [] args)
         {
-            TradeHandler tradeHandler = new TradeHandler();
+            Shop tradeHandler = new Shop();
 
             tradeHandler.Run();
         }
