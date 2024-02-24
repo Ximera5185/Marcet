@@ -58,9 +58,7 @@ namespace Marcet
 
             name = Console.ReadLine();
 
-            product = _seller.TryGetProduct(name);
-
-            if (product != null)
+            if (_seller.TryGetProduct(name, out product))
             {
                 if (_player.Money >= product.Price)
                 {

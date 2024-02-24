@@ -9,7 +9,7 @@
 
         public void AddGood(Product product)
         {
-            _products.Add(product);
+            Products.Add(product);
 
             Money -= product.Price;
         }

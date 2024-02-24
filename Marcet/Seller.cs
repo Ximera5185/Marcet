@@ -13,33 +13,36 @@
             CreateGoods(priseProduct);
         }
 
-        public Product TryGetProduct(string name)
+        public bool TryGetProduct(string name,out Product foundBook) 
         {
-            foreach (Product product in _products)
+            foreach (Product  product in Products)
             {
                 if (product.Name.ToLower() == name.ToLower())
                 {
-                    return product;
-                }
+                    foundBook = product;
 
+                    return true;
+                }
             }
 
-            return null;
+            foundBook = null;
+
+            return false;
         }
 
         public void Sell(Product product)
         {
-            _products.Remove(product);
+            Products.Remove(product);
 
             Money += product.Price;
         }
 
         private void CreateGoods(int priseProduct)
         {
-            _products.Add(new Product("Теливизор", "Samsung", priseProduct));
-            _products.Add(new Product("Машина", "Samsung", priseProduct));
-            _products.Add(new Product("Клавиатура", "Samsung", priseProduct));
-            _products.Add(new Product("Мышка", "Samsung", priseProduct));
+            Products.Add(new Product("Теливизор", "Samsung", priseProduct));
+            Products.Add(new Product("Машина", "Samsung", priseProduct));
+            Products.Add(new Product("Клавиатура", "Samsung", priseProduct));
+            Products.Add(new Product("Мышка", "Samsung", priseProduct));
         }
     }
 }
