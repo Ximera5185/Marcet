@@ -22,8 +22,7 @@ namespace Marcet
                 Console.WriteLine($"Для показа списка товаров продовца {ShowSellerGoodsCommand}\n" +
                 $"Для показа списка товаров покупателя {ShowPlayerGoodsCommand}\n" +
                 $"Для покупки товара у продовца {SellGoodsCommand}\n" +
-                $"Для выхода из программы введите {ExitProgram}\n" +
-                $"Баланс игрока {_player.Money}");
+                $"Для выхода из программы введите {ExitProgram}\n");
 
                 switch (Console.ReadLine())
                 {
@@ -36,7 +35,7 @@ namespace Marcet
                         break;
 
                     case SellGoodsCommand:
-                        SellGood();
+                        GiveProduct();
                         break;
 
                     case ExitProgram:
@@ -46,7 +45,7 @@ namespace Marcet
             }
         }
 
-        private void SellGood()
+        private void GiveProduct()
         {
             Product product;
 
@@ -60,17 +59,9 @@ namespace Marcet
 
             if (_seller.TryGetProduct(name, out product))
             {
-                if (_player.Money >= product.Price)
-                {
-                    _seller.Sell(product);
+                    _seller.SellProduct(product);
 
-                    _player.AddAndSellGood(product);
-                }
-                else
-                {
-                    Console.WriteLine("У покупателя не достаточно средств");
-                    Console.ReadKey();
-                }
+                    _player.AddAndBuyGood(product);   
             }
             else
             {

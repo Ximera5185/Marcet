@@ -10,7 +10,7 @@
 
             int priseProduct = _priseProduct;
 
-            CreateGoods(priseProduct);
+            CreateProducts(priseProduct);
         }
 
         public bool TryGetProduct(string name,out Product foundBook) 
@@ -30,14 +30,14 @@
             return false;
         }
 
-        public void Sell(Product product)
+        public void SellProduct(Product product)
         {
             Products.Remove(product);
 
             Money += product.Price;
         }
 
-        private void CreateGoods(int priseProduct)
+        private void CreateProducts(int priseProduct)
         {
             Products.Add(new Product("Теливизор", "Samsung", priseProduct));
             Products.Add(new Product("Машина", "Samsung", priseProduct));

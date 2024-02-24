@@ -7,7 +7,7 @@ namespace Marcet
     {
         protected List<Product> Products = new List<Product>();
 
-        public int Money{get; protected set;}
+        protected int Money{get; set;}
 
         public void ShowGoods()
         {
