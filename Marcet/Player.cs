@@ -7,7 +7,7 @@
             Money = money;
         }
 
-        public void AddGood(Product product)
+        public void AddAndSellGood(Product product)
         {
             Products.Add(product);
 

@@ -64,7 +64,7 @@ namespace Marcet
                 {
                     _seller.Sell(product);
 
-                    _player.AddGood(product);
+                    _player.AddAndSellGood(product);
                 }
                 else
                 {
